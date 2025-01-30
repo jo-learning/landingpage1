@@ -1,100 +1,580 @@
+"use client";
+// import Head from 'next/head';
 import Image from "next/image";
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+import Head from "next/head";
+import ImageSlider from "@/components/landingpage/imageslider";
+import {
+  Monitor,
+  Wallet,
+  HandCoins,
+  Handshake,
+  Facebook,
+  Instagram,
+  Twitter,
+  Linkedin,
+  Phone,
+  Mail,
+  SaveIcon,
+  Cpu,
+  SquareKanban,
+  ChartNoAxesColumnIncreasing,
+  Banknote,
+} from "lucide-react";
+import { useState } from "react";
+// import Image from "next/image";
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+interface Language {
+  english: string;
+  tigrigna: string;
+}
+
+export default function Home() {
+  const [lang, setLang] = useState(0); // 0 for English, 1 for Tigrinya
+
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setLang(parseInt(event.target.value));
+  };
+  const data: Language[] = [
+    { english: "Kazna - Equb Reinvented", tigrigna: "Kazna" },
+    {
+      english: "Download Kazna Equb App",
+      tigrigna: "ናይ ካዝና ዕቁብ መተግበሪ የውርዱ",
+    },
+    {
+      english: "Secure and Flexible Equb Solutions",
+      tigrigna: "ውሑስን ተዓጻጻፍን ዕቁብ",
+    },
+    {
+      english:
+        "Join Kazna to experience a new way of saving and managing your funds with added benefits.",
+      tigrigna:
+        "ተወሳኺ ረብሓታት ዘለዎ ሓድሽ ኣገባብ ምዕቃብን ምምሕዳርን ገንዘብኩም ንምምሃር ምስ ካዝና ተጸንበሩ።",
+    },
+    {
+      english: "Revolutionizing Secure and Smart Community Savings",
+      tigrigna: "ውሑስን ብልሕን ማሕበረሰባዊ ዕቋር ሰውራ ምግባር",
+    },
+    {
+      english: `Kazna Equb is more than just a savings platform—it’s a comprehensive and secure financial management system designed to fit your lifestyle. Whether you’re an entrepreneur, a young professional, or part of a savings community, we provide secure and flexible Equb solutions tailored to your needs, with advanced encryption, fraud protection, and transparent transactions to ensure your funds are always safe.`,
+      tigrigna: `ካዝና እኩብ ካብ ናይ ዕቋር መድረኽ ንላዕሊ’ዩ- ምስ ኣነባብራኻ ዝሰማማዕ ኩለመዳያውን ውሑስን ስርዓተ ምሕደራ ፋይናንስ’ዩ። በዓል ሃፍቲ ይኹን፡ መንእሰይ በዓል ሞያ፡ ወይ ኣካል ማሕበረሰብ ዕቋር፡ ገንዘብካ ኩሉ ግዜ ውሑስ ምዃኑ ንምርግጋጽ፡ ምስ ድሌታትካ ዝተመጣጠነ ውሑስን ተዓጻጻፍን ናይ Equb ፍታሕ ንህብ።`,
+    },
+    { english: "Why Kazna", tigrigna: "ስለምንታይ ካዝና" },
+    {
+      english:
+        "Smart Equb Management – Digitally Track, Join, and Manage your Equb savings.",
+      tigrigna: "ስማርት ምሕደራ – ብዲጂታል መንገዲ ን ዕቋርካ ክትከታተሎ፣ ተጸንበርን ኣመሓድሮን።",
+    },
+    { english: "Expense Tracking", tigrigna: "ምክትታል ወጻኢታት" },
+    {
+      english:
+        "Monitor and control your spending with built-in tracking tools.",
+      tigrigna: "ኣብ ውሽጡ ብዝተሃንጹ መሳርሒታት ምክትታል ወጻኢታትካ ክትከታተልን ክትቆጻጸርን ትኽእል።",
+    },
+    { english: "Integrated Wallet", tigrigna: "ዝተዋደደ ቦርሳ" },
+    {
+      english: "Use Kazna as your digital wallet for seamless transactions.",
+      tigrigna: "ንዘይተሓላለኸ ትራንዛክሽን ካዝና ከም ዲጂታላዊ ቦርሳኻ ተጠቐመሉ።",
+    },
+    { english: "Tailored Equb Packages", tigrigna: "ንዓኻ ዝምጥን ናይ እኩብ ፓኬጃት" },
+    {
+      english: "Special plans for entrepreneurs, women, and youth.",
+      tigrigna: "ፍሉይ ትልሚ ንሰብ ሃፍቲ፣ ደቂ ኣንስትዮ፣ መናእሰይ።",
+    },
+    { english: "Flexible & Locked Savings", tigrigna: "ተዓጻጻፊ & ዝተዓጽወ ዕቋር" },
+    {
+      english:
+        "Manage your money wisely with options like Druj savings for futures",
+      tigrigna: "ገንዘብካ ብጥበብ ከም ድሩጅ ዕቋር ንመጻኢ ዕድል ዝኣመሰሉ ኣማራጺታት ኣመሓድር",
+    },
+    {
+      english: "All Your Money Needs in One App",
+      tigrigna: "ኩሉ ገንዘብካ ዘድልየካ ኣብ ሓደ ኣፕሊኬሽን",
+    },
+    { english: "Seamless Savings", tigrigna: "ኣማራጺ ዘለዎ ዕቋር" },
+    { english: "innovative & Tailored Solutions", tigrigna: "ምሕደራ ወጻኢታት" },
+    { english: "Growth Opportunities", tigrigna: "ዕድላት ዕብየት" },
+    { english: "Investment", tigrigna: "ኢንቨስትመንት" },
+    { english: "About", tigrigna: "ብዛዕባና" },
+    { english: "Why us", tigrigna: "ስለምንታይ ንዓና" },
+    { english: "Contact us", tigrigna: "ርኸቡና" },
+    { english: "Kazna", tigrigna: "ካዝና" },
+    { english: "", tigrigna: "" },
+    { english: "", tigrigna: "" },
+    { english: "", tigrigna: "" },
+  ];
+  return (
+    <div className="bg-white min-h-screen">
+      <Head>
+        <title>{lang === 0 ? data[0].english : data[0].tigrigna}</title>
+      </Head>
+
+      {/* Navbar */}
+      <header className="fixed w-full z-10  shadow-lg">
+        <div className="bg-accent text-white items-center text-center">
+          {lang === 0 ? data[1].english : data[1].tigrigna}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <div className="flex justify-between items-center px-20 py-4 bg-white text-primary">
+          <h1 className="text-2xl font-bold">
+            {lang === 0 ? data[24].english : data[24].tigrigna}
+          </h1>
+          <nav className="flex gap-4">
+            <a href="#about" className=" hover:text-footer text-lg">
+              {lang === 0 ? data[21].english : data[21].tigrigna}
+            </a>
+            {/* <a href="#features" className=" hover:text-footer text-lg">
+              Features
+            </a> */}
+            <a href="#features" className=" hover:text-footer text-lg">
+              {lang === 0 ? data[22].english : data[22].tigrigna}
+            </a>
+            <a href="#footer" className=" hover:text-footer text-lg">
+              {lang === 0 ? data[23].english : data[23].tigrigna}
+            </a>
+            <select
+              value={lang}
+              onChange={handleChange}
+              className="w-fit text-lg font-medium bg-white "
+            >
+              <option value={0}>English</option>
+              <option value={1}>ትግርኛ</option>
+            </select>
+          </nav>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="flex flex-col items-center justify-center text-center text-white py-[100px] ">
+        <div className="flex flex-col lg:flex-row items-center gap-12">
+          {/* Text Section */}
+          <div className="flex flex-col items-center w-full md:w-1/2 lg:items-start text-black max-w-lg">
+            <h2
+              className={`text-4xl font-bold mb-4 text-start ${
+                lang === 0 ? "" : "text-5xl"
+              }`}
+            >
+              {lang === 0 ? data[2].english : data[2].tigrigna}
+            </h2>
+            <p className="text-[#8F8F8F] text-lg mb-6  text-start">
+              {/* Join Kazna to experience a new way of saving and managing your
+              funds with added benefits. */}
+              {lang === 0 ? data[3].english : data[3].tigrigna}
+            </p>
+            <div className="flex flex-col gap-2">
+              {/* <button className="whitespace-nowrap bg-primary text-white px-6 py-2 rounded-lg shadow-lg hover:bg-green-600">
+                Get Started
+              </button> */}
+              <div className="flex gap-2">
+                <button className="flex text-white items-center gap-2 bg-black px-6 py-2 rounded-lg shadow-lg">
+                  <Image
+                    src="/images/image4.jpg"
+                    width={40}
+                    height={40}
+                    alt="play"
+                    className="bg-black"
+                  />
+                  <div className="text-start">
+                    <p className="text-xs whitespace-nowrap">Comming Soon</p>
+                    <p className="text-lg whitespace-nowrap">Google Play</p>
+                  </div>
+                </button>
+                <button className="flex text-white items-center gap-2 bg-black px-6 py-2 rounded-lg shadow-lg">
+                  <Image
+                    src="/images/ipone.png"
+                    width={40}
+                    height={40}
+                    alt="play"
+                  />
+                  <div className="text-start">
+                    <p className="text-xs whitespace-nowrap">Comming Soon</p>
+                    <p className="text-lg whitespace-nowrap">App Store</p>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Phone Image */}
+          <div className="w-[500px] flex justify-center">
           <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            src="/images/slider/image_kazna_1.png"
+            width={200}
+            height={200}
+            alt="App Display"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+          </div>
+          
+
+
+         {/* <ImageSlider /> */}
+          
+          
+        </div>
+      </section>
+
+      {/*Topics Section*/}
+
+      <section className="text-white py-20 px-60">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-6 text-black">
+            {/* Revolutionizing Secure and Smart Community Savings */}
+            {lang === 0 ? data[4].english : data[4].tigrigna}
+          </h2>
+          <div className="text-[#8F8F8F]">
+            {/* Kazna Equb is more than just a savings platform—it’s a comprehensive
+            and secure financial management system designed to fit your
+            lifestyle. Whether you’re an entrepreneur, a young professional, or
+            part of a savings community, we provide secure and flexible Equb
+            solutions tailored to your needs, with advanced encryption, fraud
+            protection, and transparent transactions to ensure your funds are
+            always safe. */}
+            {lang === 0 ? data[5].english : data[5].tigrigna}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className=" text-white py-20">
+        <div className="max-w-6xl mx-auto text-center">
+          <h4 className="text-accent text-lg font-semibold mb-3">
+            {lang === 0 ? data[6].english : data[6].tigrigna}
+          </h4>
+          <h2 className="text-4xl font-bold mb-8 px-4 text-black">
+            {/* Smart Equb Management – Digitally Track, Join, and Manage your Equb
+            savings. */}
+            {lang === 0 ? data[7].english : data[7].tigrigna}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="bg-white text-teal-900 p-6 rounded-lg shadow-lg">
+              <div className="p-2 rounded-lg bg-accent w-fit my-2">
+                <Monitor className="text-white" />
+              </div>
+
+              <h3 className="font-semibold text-black text-lg mb-2 text-start">
+                {/* Expense Tracking */}
+                {lang === 0 ? data[8].english : data[8].tigrigna}
+              </h3>
+              <p className="text-[#8F8F8F] text-start">
+                {/* Monitor and control your spending with built-in tracking tools. */}
+                {lang === 0 ? data[9].english : data[9].tigrigna}
+              </p>
+            </div>
+            <div className="bg-white text-teal-900 p-6 rounded-lg shadow-lg">
+              <div className="p-2 rounded-lg bg-accent w-fit my-2">
+                <Wallet className="text-white" />
+              </div>
+              <h3 className="font-semibold text-black text-lg mb-2 text-start">
+                {/* Integrated Wallet */}
+                {lang === 0 ? data[10].english : data[10].tigrigna}
+              </h3>
+              <p className="text-[#8F8F8F] text-start">
+                {/* Use Kazna as your digital wallet for seamless transactions. */}
+                {lang === 0 ? data[11].english : data[11].tigrigna}
+              </p>
+            </div>
+            <div className="bg-white text-teal-900 p-6 rounded-lg shadow-lg">
+              <div className="p-2 rounded-lg bg-accent w-fit my-2">
+                <Handshake className="text-white" />
+              </div>
+              <h3 className="font-semibold text-black text-lg mb-2 text-start">
+                {/* Tailored Equb Packages */}
+                {lang === 0 ? data[12].english : data[12].tigrigna}
+              </h3>
+              <p className="text-[#8F8F8F] text-start">
+                {/* Special plans for entrepreneurs, women, and youth. */}
+                {lang === 0 ? data[13].english : data[13].tigrigna}
+              </p>
+            </div>
+            <div className="bg-white text-teal-900 p-6 rounded-lg shadow-lg">
+              <div className="p-2 rounded-lg bg-accent w-fit my-2">
+                <HandCoins className="text-white" />
+              </div>
+              <h3 className="font-semibold text-black text-lg mb-2 text-start">
+                {/* Flexible & Locked Savings */}
+                {lang === 0 ? data[14].english : data[14].tigrigna}
+              </h3>
+              <p className="text-[#8F8F8F] text-start">
+                {/* Manage your money wisely with options like Druj savings for
+                futures */}
+                {lang === 0 ? data[15].english : data[15].tigrigna}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className=" text-primary py-20 ">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-6 text-black">
+            {/* All Your Money Needs in One App */}
+            {lang === 0 ? data[16].english : data[16].tigrigna}
+          </h2>
+          <div className="flex justify-between">
+            <div className="w-full">
+              <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+                {/* <div className="p-4 border rounded-lg shadow bg-accent">
+              <h3 className="font-semibold text-white text-2xl">Expense Tracker</h3>
+              <p className="text-sm text-gray-100">
+                Track your contributions and payouts seamlessly.
+              </p>
+            </div> */}
+                <div>
+                  <div className="p-2 rounded-lg my-2 flex items-center  justify-center">
+                    <SaveIcon
+                      className="text-accent font-bold text-3xl "
+                      size={40}
+                    />
+                  </div>
+                  <div className="bg-white px-1 py-3 text-black shadow-xl ">
+                    {/* Seamless Savings */}
+                    {lang === 0 ? data[17].english : data[17].tigrigna}
+                  </div>
+                </div>
+                <div>
+                  <div className="p-2 rounded-lg my-2 flex items-center  justify-center">
+                    <Cpu
+                      className="text-accent font-bold text-3xl "
+                      size={40}
+                    />
+                  </div>
+                  <div className="bg-white px-1 py-3 text-black shadow-xl ">
+                    {/* innovative & Tailored Solutions */}
+                    {lang === 0 ? data[18].english : data[18].tigrigna}
+                  </div>
+                </div>
+                <div>
+                  <div className="p-2 rounded-lg my-2 flex items-center  justify-center">
+                    <HandCoins
+                      className="text-accent font-bold text-3xl "
+                      size={40}
+                    />
+                  </div>
+                  <div className="bg-white px-1 py-3 text-black shadow-xl ">
+                    {/* Seamless Savings */}
+                    {lang === 0 ? data[17].english : data[17].tigrigna}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* <Image
+            src="/images/image1.png"
+            width={500}
+            height={600}
+            alt="App Display"
+          /> */}
+            {/* <div><ImageSlider /></div> */}
+            <div className="flex-1"></div>
+            <ImageSlider />
+            <div className="flex-1"></div>
+
+            <div className="w-full">
+              <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+                <div>
+                  <div className="p-2 rounded-lg my-2 flex items-center  justify-center">
+                    <SquareKanban
+                      className="text-accent font-bold text-3xl "
+                      size={40}
+                    />
+                  </div>
+                  <div className="bg-white px-1 py-3 text-black shadow-xl ">
+                    {/* Expense Management */}
+                    {lang === 0 ? data[18].english : data[18].tigrigna}
+                  </div>
+                </div>
+                <div>
+                  <div className="p-2 rounded-lg my-2 flex items-center  justify-center">
+                    <ChartNoAxesColumnIncreasing
+                      className="text-accent font-bold text-3xl "
+                      size={40}
+                    />
+                  </div>
+                  <div className="bg-white px-1 py-3 text-black shadow-xl ">
+                    {/* Growth Opportunities */}
+                    {lang === 0 ? data[19].english : data[19].tigrigna}
+                  </div>
+                </div>
+                <div>
+                  <div className="p-2 rounded-lg my-2 flex items-center  justify-center">
+                    <Banknote
+                      className="text-accent font-bold text-3xl "
+                      size={40}
+                    />
+                  </div>
+                  <div className="bg-white px-1 py-3 text-black shadow-xl ">
+                    {/* Investment */}
+                    {lang === 0 ? data[20].english : data[20].tigrigna}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section
+      <section
+        id="how-it-works"
+        className="bg-gradient-to-b from-white via-white to-accent text-black py-20 px-6"
+      >
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-6">How Kazna Works</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-4 border rounded-lg shadow bg-white">
+              <h3 className="font-semibold text-black">1. Create a Group</h3>
+              <p className="text-gray-500">Start or join an equb group with trusted members.</p>
+            </div>
+            <div className="p-4 border rounded-lg shadow bg-white">
+              <h3 className="font-semibold text-black">2. Save and Rotate</h3>
+              <p className="text-gray-500">Contribute a set amount and take turns accessing funds.</p>
+            </div>
+            <div className="p-4 border rounded-lg shadow bg-white">
+              <h3 className="font-semibold text-black">3. Secure Payouts</h3>
+              <p className="text-gray-500">Receive your payout securely when it&apos;s your turn.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+       Testimonials Section
+      <section
+        id="testimonials"
+        className="bg-gradient-to-b from-accent via-accent to-white text-white py-20 px-6"
+      >
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-6 text-black">What Our Users Say</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="p-6 bg-white text-black rounded-lg shadow-lg">
+              <p>
+              &qout; Kazna has revolutionized the way I save money. The app is
+                user-friendly and secure. Highly recommended! &qout; 
+              </p>
+              <p className="mt-4 font-semibold">- Sarah T.</p>
+            </div>
+            <div className="p-6 bg-white text-black rounded-lg shadow-lg">
+              <p>
+                &qout; Joining an equb with Kazna has been seamless and stress-free.
+                I love the automated notifications!&qout;
+              </p>
+              <p className="mt-4 font-semibold">- Ahmed Y.</p>
+            </div>
+          </div>
+        </div>
+      </section> */}
+
+      {/* Contact Us Section */}
+      {/* <section id="contact" className="bg-white text-black py-20 px-6">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
+          <p className="mb-4">
+            Have questions? Contact us at{" "}
+            <span className="font-semibold">support@kazna.com</span>
+          </p>
+          <button className="bg-primary text-white px-6 py-2 rounded-lg shadow-lg hover:bg-green-600">
+            Contact Us
+          </button>
+        </div>
+      </section> */}
+
+      {/* Footer */}
+      <footer
+        id="footer"
+        className="bg-gradient-to-t from-accent to-accent text-white text-center pb-4 "
+      >
+        <div className="bg-accent">
+          <div className="grid grid-cols-3 bg-accent pt-5 text-white mx-[0px] pb-3">
+            <div className="flex flex-col justify-end">
+              <div className="items-center justify-center flex mb-4">
+                <Image
+                  src="/images/logo1.png"
+                  width={160}
+                  height={160}
+                  alt="Kazna"
+                />
+              </div>
+
+              <div className="flex justify-center gap-2">
+                <div className="hover:text-footer text-lg">
+                  <Linkedin />{" "}
+                </div>
+                <div className="hover:text-footer text-lg">
+                  <Facebook />{" "}
+                </div>
+                <div className="hover:text-footer text-lg">
+                  <Instagram />{" "}
+                </div>
+                <div className="hover:text-footer text-lg">
+                  {" "}
+                  <Twitter />
+                </div>{" "}
+                <svg
+                  width="23"
+                  height="23"
+                  viewBox="0 0 48 48"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="24" cy="24" r="24" fill="#0088CC" />
+                  <path
+                    d="M34.22 14.34L10.79 23.32C9.83 23.68 9.84 24.56 10.66 24.82L16.36 26.64L30.98 17.84C31.63 17.45 32.24 17.72 31.73 18.17L19.3 29.39H19.29L19.3 29.4L18.91 35.58C19.48 35.58 19.73 35.33 20.05 35.03L23.92 31.28L30.38 36.23C31.46 36.83 32.23 36.53 32.49 35.29L35.84 15.89C36.22 14.33 35.35 13.66 34.22 14.34Z"
+                    fill="white"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h2 className="text-3xl mb-2 flex text-start">Company</h2>
+              <div className="flex flex-col justify-start items-start gap-3 pl-4">
+                <a href="#about" className=" hover:text-footer text-lg">
+                  {lang === 0 ? data[21].english : data[21].tigrigna}
+                </a>
+                {/* <a href="#features" className=" hover:text-footer text-lg">
+              Features
+            </a> */}
+                <a href="#features" className=" hover:text-footer text-lg">
+                  {lang === 0 ? data[22].english : data[22].tigrigna}
+                </a>
+                <a href="#footer" className=" hover:text-footer text-lg">
+                  {lang === 0 ? data[23].english : data[23].tigrigna}
+                </a>
+              </div>
+            </div>
+            <div className="flex flex-col text-lg">
+              <h3 className="text-3xl mb-2 flex text-start">Contact us</h3>
+              <div className="pl-4 flex flex-col gap-3">
+                <div className="flex w-fit text-white gap-2 items-center">
+                  <Phone size={20} /> +2123456789
+                </div>
+                <div className="flex w-fit text-white gap-2 items-center">
+                  <Phone size={20} /> +2123456789
+                </div>
+                <div className="flex w-fit text-white gap-2 items-center">
+                  <Phone size={20} /> +2123456789
+                </div>
+                <div className="flex w-fit text-white gap-2 items-center">
+                  <svg
+                    width="23"
+                    height="23"
+                    viewBox="0 0 48 48"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle cx="24" cy="24" r="24" fill="#0088CC" />
+                    <path
+                      d="M34.22 14.34L10.79 23.32C9.83 23.68 9.84 24.56 10.66 24.82L16.36 26.64L30.98 17.84C31.63 17.45 32.24 17.72 31.73 18.17L19.3 29.39H19.29L19.3 29.4L18.91 35.58C19.48 35.58 19.73 35.33 20.05 35.03L23.92 31.28L30.38 36.23C31.46 36.83 32.23 36.53 32.49 35.29L35.84 15.89C36.22 14.33 35.35 13.66 34.22 14.34Z"
+                      fill="white"
+                    />
+                  </svg>
+                  @kazna_support
+                </div>
+                <div className="flex w-fit text-white gap-2 items-center">
+                  <Mail size={20} /> contact@kazna.com
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p>&copy; 2025 Kazna. All rights reserved.</p>
       </footer>
     </div>
   );
