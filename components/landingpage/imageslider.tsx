@@ -24,18 +24,18 @@ const ImageSlider: React.FC = () => {
     }, []);
   
     return (
-      <div className="relative w-full overflow-hidden">
+      <div className="relative overflow-hidden w-[500px] flex justify-center">
         <div
-          className="absolute inset-0 flex transition-transform duration-700 ease-in-out"
+          className=" inset-0 flex transition-transform duration-700 ease-in-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {images.map((src, index) => (
-            <div key={index} className="w-full flex-shrink-0 relative h-64 items-center flex justify-center">
+            <div key={index} className="w-full flex-shrink-0 relative h-[440px] items-center flex justify-center">
               <Image
                 src={src}
                 alt={`Slide ${index + 1}`}
-                width={160}
-                height={700}
+                width={200}
+                height={300}
                 className="object-cover mt-12"
                 priority
               />
@@ -43,7 +43,7 @@ const ImageSlider: React.FC = () => {
           ))}
         </div>
   
-        <div className="absolute bottom-4 w-full flex justify-center gap-2">
+        {/* <div className="absolute bottom-4 w-full flex justify-center gap-2">
           {images.map((_, index) => (
             <button
               key={index}
@@ -54,7 +54,7 @@ const ImageSlider: React.FC = () => {
               aria-label={`Go to slide ${index + 1}`}
             ></button>
           ))}
-        </div>
+        </div> */}
       </div>
     );
   };

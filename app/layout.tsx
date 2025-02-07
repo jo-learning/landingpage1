@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+// import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Poppins } from "next/font/google";
+import { Poppins, Abyssinica_SIL } from "next/font/google";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -9,17 +9,30 @@ const poppins = Poppins({
   variable: "--font-poppins", // Define a CSS variable
 });
 
-
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const abyssinicaSIL = Abyssinica_SIL({
+  weight: "400", // Abyssinica SIL only has 400 weight
+  subsets: ["latin"], // Choose subsets
+  variable: "--font-abyssinica-sil", // Define a CSS variable
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+
+// const notoSerif = Noto_Serif({
+//   subsets: ["latin"],
+//   weight: ["400", "700"],
+//   variable: "--font-noto-serif",
+// });
+
+
+
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
+
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -32,9 +45,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={poppins.variable}>
+    <html lang="en" className={`${poppins.variable} ${abyssinicaSIL.variable}`}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${poppins.variable} antialiased`}
       >
         {children}
       </body>

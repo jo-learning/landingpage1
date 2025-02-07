@@ -32,6 +32,7 @@ export default {
   				DEFAULT: 'hsl(var(--muted))',
   				foreground: 'hsl(var(--muted-foreground))'
   			},
+			
   			accent: {
   				// DEFAULT: '#D4AF37',
   				// DEFAULT: '#D4AF37',
@@ -40,6 +41,13 @@ export default {
   			},
 			footer: {
 				DEFAULT: "#D4AF37"
+			},
+			gold:{
+				DEFAULT:'#FFD700',
+			// 	foreground: 'hsl(var(--muted-foreground))'
+			},
+			blueblack:{
+				DEFAULT: "#040720"
 			},
   			destructive: {
   				DEFAULT: 'hsl(var(--destructive))',
