@@ -581,13 +581,13 @@ export default function Home() {
 
 
 
-<div className={`min-h-screen ${lang === 0 ? "font-poppins" : "font-abyssinica-sil"} bg-gradient-to-br from-blueblack via-blue-900 to-gold`}>
+<div className={`min-h-screen ${lang === 0 ? "font-poppins" : "font-abyssinica-sil"} bg-blueblack`}>
   <Head>
     <title>{lang === 0 ? data[0].english : data[0].tigrigna}</title>
   </Head>
 
   {/* Navbar */}
-  <header className="fixed w-full z-10 shadow-lg bg-gradient-to-r from-blueblack to-blue-900">
+  <header className="fixed w-full z-10 backdrop-blur-md bg-blueblack/50 shadow-lg">
     <div className="bg-gradient-to-r from-gold to-gold-light text-blueblack items-center text-center py-2">
       {lang === 0 ? data[1].english : data[1].tigrigna}
     </div>
@@ -618,11 +618,13 @@ export default function Home() {
   </header>
 
   {/* Hero Section */}
-  <section className="flex flex-col items-center justify-center text-center text-white py-[100px] bg-gradient-to-br from-blueblack via-blue-900 to-gold">
-    <div className="flex flex-col lg:flex-row items-center gap-12">
+  <section className="relative flex flex-col items-center justify-center text-center text-white py-[100px]  bg-image1 overflow-hidden">
+    {/* Background Animation */}
+    <div className="absolute inset-0 bg-[url('/images/abstract-bg.png')] bg-cover bg-center opacity-20"></div>
+    <div className="relative flex flex-col lg:flex-row items-center gap-12">
       {/* Text Section */}
       <div className="flex flex-col items-center w-full md:w-1/2 lg:items-start text-white max-w-lg">
-        <h2 className={`text-4xl font-bold mb-4 text-start ${lang === 0 ? "" : "text-5xl"}`}>
+        <h2 className={`text-5xl font-bold mb-4 text-start ${lang === 0 ? "" : "text-6xl"}`}>
           {lang === 0 ? data[2].english : data[2].tigrigna}
         </h2>
         <p className="text-gold-light text-lg mb-6 text-start">
@@ -630,7 +632,7 @@ export default function Home() {
         </p>
         <div className="flex flex-col gap-2">
           <div className="flex gap-2">
-            <button className="flex text-white items-center gap-2 bg-blueblack px-6 py-2 rounded-lg shadow-lg border border-gold hover:bg-blue-900">
+            <button className="flex text-white items-center gap-2 bg-blueblack px-6 py-2 rounded-lg shadow-lg border border-gold hover:bg-blue-900 transition-all">
               <Image
                 src="/images/image4.jpg"
                 width={40}
@@ -643,7 +645,7 @@ export default function Home() {
                 <p className="text-lg whitespace-nowrap">Google Play</p>
               </div>
             </button>
-            <button className="flex text-white items-center gap-2 bg-blueblack px-6 py-2 rounded-lg shadow-lg border border-gold hover:bg-blue-900">
+            <button className="flex text-white items-center gap-2 bg-blueblack px-6 py-2 rounded-lg shadow-lg border border-gold hover:bg-blue-900 transition-all">
               <Image
                 src="/images/ipone.png"
                 width={40}
@@ -660,13 +662,17 @@ export default function Home() {
       </div>
 
       {/* Phone Image */}
-      <ImageSlider />
+      <div className="relative w-[500px] h-[500px] flex justify-center items-center">
+        <div className="absolute w-full h-full bg-gradient-to-br from-gold to-gold-light rounded-full blur-3xl opacity-30"></div>
+        <ImageSlider />
+      </div>
     </div>
   </section>
 
   {/* Topics Section */}
-  <section className="text-white py-20 px-60 bg-gradient-to-br from-blueblack via-blue-900 to-gold">
-    <div className="max-w-6xl mx-auto text-center">
+  <section className="relative text-white py-20 px-60 bg-blueblack">
+    <div className="absolute inset-0 bg-[url('/images/abstract-bg-2.png')] bg-cover bg-center opacity-10"></div>
+    <div className="relative max-w-6xl mx-auto text-center">
       <h2 className="text-4xl font-bold mb-6 text-gold">
         {lang === 0 ? data[4].english : data[4].tigrigna}
       </h2>
@@ -677,8 +683,9 @@ export default function Home() {
   </section>
 
   {/* Features Section */}
-  <section id="features" className="text-white py-20 bg-gradient-to-br from-blueblack via-blue-900 to-gold">
-    <div className="max-w-6xl mx-auto text-center">
+  <section id="features" className="relative text-white py-20 bg-blueblack">
+    <div className="absolute inset-0 bg-[url('/images/abstract-bg-3.png')] bg-cover bg-center opacity-10"></div>
+    <div className="relative max-w-6xl mx-auto text-center">
       <h4 className="text-gold text-lg font-semibold mb-3">
         {lang === 0 ? data[6].english : data[6].tigrigna}
       </h4>
@@ -686,87 +693,50 @@ export default function Home() {
         {lang === 0 ? data[7].english : data[7].tigrigna}
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-blueblack text-white p-6 rounded-lg shadow-lg border border-gold hover:bg-blue-900">
-          <div className="p-2 rounded-lg bg-gold w-fit my-2">
-            <Monitor className="text-blueblack" />
+        {[8, 10, 12, 14].map((index) => (
+          <div key={index} className="bg-blueblack/50 backdrop-blur-md text-white p-6 rounded-lg shadow-lg border border-gold/20 hover:border-gold transition-all">
+            <div className="w-full items-center flex justify-center">
+            <div className="p-6 rounded-full bg-gold w-fit my-2">
+              {index === 8 ? <Monitor className="text-blueblack" /> :
+               index === 10 ? <Wallet className="text-blueblack" /> :
+               index === 12 ? <Handshake className="text-blueblack" /> :
+               <HandCoins className="text-blueblack" />}
+            </div>
+            </div>
+            <h3 className="font-semibold text-gold text-lg mb-2 text-start">
+              {lang === 0 ? data[index].english : data[index].tigrigna}
+            </h3>
+            <p className="text-gold-light text-start">
+              {lang === 0 ? data[index + 1].english : data[index + 1].tigrigna}
+            </p>
           </div>
-          <h3 className="font-semibold text-gold text-lg mb-2 text-start">
-            {lang === 0 ? data[8].english : data[8].tigrigna}
-          </h3>
-          <p className="text-gold-light text-start">
-            {lang === 0 ? data[9].english : data[9].tigrigna}
-          </p>
-        </div>
-        <div className="bg-blueblack text-white p-6 rounded-lg shadow-lg border border-gold hover:bg-blue-900">
-          <div className="p-2 rounded-lg bg-gold w-fit my-2">
-            <Wallet className="text-blueblack" />
-          </div>
-          <h3 className="font-semibold text-gold text-lg mb-2 text-start">
-            {lang === 0 ? data[10].english : data[10].tigrigna}
-          </h3>
-          <p className="text-gold-light text-start">
-            {lang === 0 ? data[11].english : data[11].tigrigna}
-          </p>
-        </div>
-        <div className="bg-blueblack text-white p-6 rounded-lg shadow-lg border border-gold hover:bg-blue-900">
-          <div className="p-2 rounded-lg bg-gold w-fit my-2">
-            <Handshake className="text-blueblack" />
-          </div>
-          <h3 className="font-semibold text-gold text-lg mb-2 text-start">
-            {lang === 0 ? data[12].english : data[12].tigrigna}
-          </h3>
-          <p className="text-gold-light text-start">
-            {lang === 0 ? data[13].english : data[13].tigrigna}
-          </p>
-        </div>
-        <div className="bg-blueblack text-white p-6 rounded-lg shadow-lg border border-gold hover:bg-blue-900">
-          <div className="p-2 rounded-lg bg-gold w-fit my-2">
-            <HandCoins className="text-blueblack" />
-          </div>
-          <h3 className="font-semibold text-gold text-lg mb-2 text-start">
-            {lang === 0 ? data[14].english : data[14].tigrigna}
-          </h3>
-          <p className="text-gold-light text-start">
-            {lang === 0 ? data[15].english : data[15].tigrigna}
-          </p>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
   {/* About Section */}
-  <section id="about" className="text-white py-20 bg-gradient-to-br from-blueblack via-blue-900 to-gold">
-    <div className="max-w-6xl mx-auto text-center">
+  <section id="about" className="relative text-white py-20 bg-blueblack">
+    <div className="absolute inset-0 bg-[url('/images/abstract-bg-4.png')] bg-cover bg-center opacity-10"></div>
+    <div className="relative max-w-6xl mx-auto text-center">
       <h2 className="text-3xl font-bold mb-6 text-gold">
         {lang === 0 ? data[16].english : data[16].tigrigna}
       </h2>
       <div className="flex justify-between">
         <div className="w-full">
           <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
-            <div>
-              <div className="p-2 rounded-lg my-2 flex items-center justify-center">
-                <SaveIcon className="text-gold font-bold text-3xl" size={40} />
+            {[17, 18, 19].map((index) => (
+              <div key={index}>
+                <div className="p-2 rounded-lg my-2 flex items-center justify-center">
+                  {index === 17 ? <SaveIcon className="text-gold font-bold text-3xl" size={40} /> :
+                   index === 18 ? <Cpu className="text-gold font-bold text-3xl" size={40} /> :
+                   <HandCoins className="text-gold font-bold text-3xl" size={40} />}
+                </div>
+                <div className="bg-blueblack/50 backdrop-blur-md px-1 py-3 text-gold shadow-xl border border-gold/20 hover:border-gold transition-all">
+                  {lang === 0 ? data[index].english : data[index].tigrigna}
+                </div>
               </div>
-              <div className="bg-blueblack px-1 py-3 text-gold shadow-xl border border-gold">
-                {lang === 0 ? data[17].english : data[17].tigrigna}
-              </div>
-            </div>
-            <div>
-              <div className="p-2 rounded-lg my-2 flex items-center justify-center">
-                <Cpu className="text-gold font-bold text-3xl" size={40} />
-              </div>
-              <div className="bg-blueblack px-1 py-3 text-gold shadow-xl border border-gold">
-                {lang === 0 ? data[18].english : data[18].tigrigna}
-              </div>
-            </div>
-            <div>
-              <div className="p-2 rounded-lg my-2 flex items-center justify-center">
-                <HandCoins className="text-gold font-bold text-3xl" size={40} />
-              </div>
-              <div className="bg-blueblack px-1 py-3 text-gold shadow-xl border border-gold">
-                {lang === 0 ? data[17].english : data[17].tigrigna}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
         <div className="flex-1"></div>
@@ -774,30 +744,18 @@ export default function Home() {
         <div className="flex-1"></div>
         <div className="w-full">
           <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
-            <div>
-              <div className="p-2 rounded-lg my-2 flex items-center justify-center">
-                <SquareKanban className="text-gold font-bold text-3xl" size={40} />
+            {[18, 19, 20].map((index) => (
+              <div key={index}>
+                <div className="p-2 rounded-lg my-2 flex items-center justify-center">
+                  {index === 18 ? <SquareKanban className="text-gold font-bold text-3xl" size={40} /> :
+                   index === 19 ? <ChartNoAxesColumnIncreasing className="text-gold font-bold text-3xl" size={40} /> :
+                   <Banknote className="text-gold font-bold text-3xl" size={40} />}
+                </div>
+                <div className="bg-blueblack/50 backdrop-blur-md px-1 py-3 text-gold shadow-xl border border-gold/20 hover:border-gold transition-all">
+                  {lang === 0 ? data[index].english : data[index].tigrigna}
+                </div>
               </div>
-              <div className="bg-blueblack px-1 py-3 text-gold shadow-xl border border-gold">
-                {lang === 0 ? data[18].english : data[18].tigrigna}
-              </div>
-            </div>
-            <div>
-              <div className="p-2 rounded-lg my-2 flex items-center justify-center">
-                <ChartNoAxesColumnIncreasing className="text-gold font-bold text-3xl" size={40} />
-              </div>
-              <div className="bg-blueblack px-1 py-3 text-gold shadow-xl border border-gold">
-                {lang === 0 ? data[19].english : data[19].tigrigna}
-              </div>
-            </div>
-            <div>
-              <div className="p-2 rounded-lg my-2 flex items-center justify-center">
-                <Banknote className="text-gold font-bold text-3xl" size={40} />
-              </div>
-              <div className="bg-blueblack px-1 py-3 text-gold shadow-xl border border-gold">
-                {lang === 0 ? data[20].english : data[20].tigrigna}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -805,7 +763,7 @@ export default function Home() {
   </section>
 
   {/* Footer */}
-  <footer id="footer" className="bg-gradient-to-br from-blueblack via-blue-900 to-gold text-white text-center pb-4">
+  <footer id="footer" className="bg-blueblack text-white text-center pb-4">
     <div className="bg-transparent">
       <div className="grid grid-cols-3 bg-transparent pt-5 text-white mx-[0px] pb-3">
         <div className="flex flex-col justify-end">
@@ -818,45 +776,21 @@ export default function Home() {
             />
           </div>
           <div className="flex justify-center gap-2">
-            <div className="hover:text-gold text-lg">
-              <Linkedin />
-            </div>
-            <div className="hover:text-gold text-lg">
-              <Facebook />
-            </div>
-            <div className="hover:text-gold text-lg">
-              <Instagram />
-            </div>
-            <div className="hover:text-gold text-lg">
-              <Twitter />
-            </div>
-            <svg
-              width="23"
-              height="23"
-              viewBox="0 0 48 48"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle cx="24" cy="24" r="24" fill="#0088CC" />
-              <path
-                d="M34.22 14.34L10.79 23.32C9.83 23.68 9.84 24.56 10.66 24.82L16.36 26.64L30.98 17.84C31.63 17.45 32.24 17.72 31.73 18.17L19.3 29.39H19.29L19.3 29.4L18.91 35.58C19.48 35.58 19.73 35.33 20.05 35.03L23.92 31.28L30.38 36.23C31.46 36.83 32.23 36.53 32.49 35.29L35.84 15.89C36.22 14.33 35.35 13.66 34.22 14.34Z"
-                fill="white"
-              />
-            </svg>
+            {[Linkedin, Facebook, Instagram, Twitter].map((Icon, i) => (
+              <div key={i} className="hover:text-gold text-lg">
+                <Icon />
+              </div>
+            ))}
           </div>
         </div>
         <div>
           <h2 className="text-3xl mb-2 flex text-start">Company</h2>
           <div className="flex flex-col justify-start items-start gap-3 pl-4">
-            <a href="#about" className="hover:text-gold text-lg">
-              {lang === 0 ? data[21].english : data[21].tigrigna}
-            </a>
-            <a href="#features" className="hover:text-gold text-lg">
-              {lang === 0 ? data[22].english : data[22].tigrigna}
-            </a>
-            <a href="#footer" className="hover:text-gold text-lg">
-              {lang === 0 ? data[23].english : data[23].tigrigna}
-            </a>
+            {[21, 22, 23].map((index) => (
+              <a key={index} href={`#${index === 21 ? 'about' : index === 22 ? 'features' : 'footer'}`} className="hover:text-gold text-lg">
+                {lang === 0 ? data[index].english : data[index].tigrigna}
+              </a>
+            ))}
           </div>
         </div>
         <div className="flex flex-col text-lg">
@@ -864,28 +798,6 @@ export default function Home() {
           <div className="pl-4 flex flex-col gap-3">
             <div className="flex w-fit text-white gap-2 items-center">
               <Phone size={20} /> +2123456789
-            </div>
-            <div className="flex w-fit text-white gap-2 items-center">
-              <Phone size={20} /> +2123456789
-            </div>
-            <div className="flex w-fit text-white gap-2 items-center">
-              <Phone size={20} /> +2123456789
-            </div>
-            <div className="flex w-fit text-white gap-2 items-center">
-              <svg
-                width="23"
-                height="23"
-                viewBox="0 0 48 48"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="24" cy="24" r="24" fill="#0088CC" />
-                <path
-                  d="M34.22 14.34L10.79 23.32C9.83 23.68 9.84 24.56 10.66 24.82L16.36 26.64L30.98 17.84C31.63 17.45 32.24 17.72 31.73 18.17L19.3 29.39H19.29L19.3 29.4L18.91 35.58C19.48 35.58 19.73 35.33 20.05 35.03L23.92 31.28L30.38 36.23C31.46 36.83 32.23 36.53 32.49 35.29L35.84 15.89C36.22 14.33 35.35 13.66 34.22 14.34Z"
-                  fill="white"
-                />
-              </svg>
-              @kazna_support
             </div>
             <div className="flex w-fit text-white gap-2 items-center">
               <Mail size={20} /> contact@kazna.com

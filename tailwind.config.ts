@@ -8,6 +8,11 @@ export default {
   ],
   theme: {
     extend: {
+		backgroundImage: {
+			image1: "url('/images/background image 1.jpg')",
+			image2: "url('/images/background image 2.jpg')",
+
+		},
       colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
@@ -43,7 +48,7 @@ export default {
 				DEFAULT: "#D4AF37"
 			},
 			gold:{
-				DEFAULT:'#FFD700',
+				DEFAULT:'#AF8D56',
 			// 	foreground: 'hsl(var(--muted-foreground))'
 			},
 			blueblack:{
