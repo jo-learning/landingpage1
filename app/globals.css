@@ -8,6 +8,23 @@
   --font-poppins: "Poppins",;
 }
 
+
+.gold-curve-bg {
+  position: relative;
+  background: linear-gradient(to bottom, white, #040720); /* White to Blue-Black */
+}
+
+.gold-curve-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to bottom,#040720, white );
+  clip-path: ellipse(80% 100% at top);
+}
+
 .font-poppins {
   font-family: var(--font-poppins);
 }

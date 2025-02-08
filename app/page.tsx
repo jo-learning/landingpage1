@@ -632,7 +632,7 @@ export default function Home() {
         </p>
         <div className="flex flex-col gap-2">
           <div className="flex gap-2">
-            <button className="flex text-white items-center gap-2 bg-blueblack px-6 py-2 rounded-lg shadow-lg border border-gold hover:bg-blue-900 transition-all">
+            <button className="flex text-white items-center gap-2 bg-black px-6 py-2 rounded-lg shadow-lg border  transition-all">
               <Image
                 src="/images/image4.jpg"
                 width={40}
@@ -645,7 +645,7 @@ export default function Home() {
                 <p className="text-lg whitespace-nowrap">Google Play</p>
               </div>
             </button>
-            <button className="flex text-white items-center gap-2 bg-blueblack px-6 py-2 rounded-lg shadow-lg border border-gold hover:bg-blue-900 transition-all">
+            <button className="flex text-white items-center gap-2 bg-black px-6 py-2 rounded-lg shadow-lg border  transition-all">
               <Image
                 src="/images/ipone.png"
                 width={40}
@@ -670,7 +670,7 @@ export default function Home() {
   </section>
 
   {/* Topics Section */}
-  <section className="relative text-white py-20 px-60 bg-blueblack">
+  <section className="relative text-white py-20 px-60 bg-gradient-to-b from-gray-900 via-blueblack to-blueblack">
     <div className="absolute inset-0 bg-[url('/images/abstract-bg-2.png')] bg-cover bg-center opacity-10"></div>
     <div className="relative max-w-6xl mx-auto text-center">
       <h2 className="text-4xl font-bold mb-6 text-gold">
@@ -682,8 +682,12 @@ export default function Home() {
     </div>
   </section>
 
+
+
+  
+
   {/* Features Section */}
-  <section id="features" className="relative text-white py-20 bg-blueblack">
+  <section id="features" className="relative text-white py-20 gold-curve-bg">
     <div className="absolute inset-0 bg-[url('/images/abstract-bg-3.png')] bg-cover bg-center opacity-10"></div>
     <div className="relative max-w-6xl mx-auto text-center">
       <h4 className="text-gold text-lg font-semibold mb-3">
